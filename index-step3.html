@@ -1,0 +1,64 @@
+
+<!Doctype html>
+<html>
+<head> 
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<title>Покупка</title>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/style.css">
+	
+</head>
+
+<body>
+	<nav class="steps-wrapper container">
+		
+		<ul class="steps">
+			<li class="steps__item overpast">
+				<span class="steps__item-link">
+					<span class="steps__item-number">&#10004;</span>
+					<span class="steps__item-label">Корзина</span>
+				</span>
+			</li>
+			<li class="steps__item overpast">
+				<span class="steps__item-link">
+					<span class="steps__item-number">&#10004;</span>
+					<span class="steps__item-label">Оплата</span>
+				</span>
+			</li>
+			<li class="steps__item active">
+				<span class="steps__item-link">
+					<span class="steps__item-number">3</span>
+					<span class="steps__item-label">Доставка</span>
+				</span>
+			</li>
+			<li class="steps__item">
+				<span class="steps__item-link">
+					<span class="steps__item-number">4</span>
+					<span class="steps__item-label">Завершено</span>
+				</span>
+			</li>
+		</ul>
+	</nav>
+	
+	<div class="block-content block-content_step-3 container">
+		<p class="block-content__title">КОНТАКТНАЯ ИНФОРМАЦИЯ</p>
+		<form class="form-user-info" action="">
+			<input type="text" class="input form-user-info__input" name="user-surname" id="user-surname" placeholder="Фамилия">
+			<input type="text" class="input form-user-info__input" name="user-firstname" id="user-firstname" placeholder="Имя">
+			<input type="tel" class="input form-user-info__input" name="user-phone" id="user-phone" placeholder="Телефон">
+			<input type="email" class="input form-user-info__input" name="user-mail" id="user-mail" placeholder="Email">
+			<input type="submit" class="input-hidden" value="Send" name="send-user-info" id="send-user-info">
+		</form>
+			
+	</div>
+
+	<div class="block-end block-end__step-3 container">	
+		<a href="#" class="btn-next">Завершить</a>		
+	</div>
+
+</body>
+</html>
