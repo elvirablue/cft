@@ -60,7 +60,7 @@ function randomElement(N, Arr) {
 	var j = 0;
 	for (i = 0; i < N; i++) {
 		j = Math.floor(Math.random() * len);
-		new_array = new_array.concat(Arr.splice(j, 1));
+		new_array = new_array.concat(Arr.slice(j, j + 1));
 		len--;
 	};
 	return new_array;
@@ -83,15 +83,24 @@ function renderApp(App) {
 	});
 }
 
-function clearApp(element) {
-	
+function removeChildren(node) {
+    var children = node.childNodes;
+    while(children.length) {
+        node.removeChild(children[0]);
+    }
 }
 
-newApplication = randomElement(3, Application);
+var interval = 2000;
 
-var interval = 1000;
+var tempApplication = Application.slice();
+newApplication = randomElement(3, tempApplication);
 renderApp(newApplication);
 
-
-setInterval(renderApp(newApplication), interval);
+setInterval(function() {	
+	removeChildren(container);		
+	
+	newApplication = randomElement(3, tempApplication);
+	renderApp(newApplication);
+	
+}, interval);
 
