@@ -22,6 +22,21 @@ function getApp(pageName) {
 	xhr.send();
 }
 
+function getInfoApp() {
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', 'api/api_info.json', true);
+	xhr.onload = function(evt) {
+		var jsonStr = this.responseText;
+  		var loadedApp = JSON.parse(jsonStr);
+  		CardApplication = loadedApp.slice();
+  		var len = loadedApp.length;
+
+  		renderCardApp(CardApplication[0]); 		
+		
+  	};
+	xhr.send();
+}
+
 
 function MyDateStr(update) {	
 	var str_date;
@@ -50,6 +65,11 @@ function renderApp(App) {
 		var element = getElementFromTemplate(app1);
 		container.appendChild(element);
 	});
+}
+
+function renderCardApp(App) {
+	var element = getCardAppFromTemplate(App);
+	container_info.appendChild(element);
 }
 
 function removeChildren(node) {
