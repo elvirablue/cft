@@ -1,0 +1,88 @@
+<!Doctype html>
+<html>
+<head> 
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<title>Покупка</title>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/style.css">
+	
+</head>
+
+<body>
+	<nav class="steps-wrapper container">
+		
+		<ul class="steps">
+			<li class="steps__item active">
+				<span class="steps__item-link">
+					<span class="steps__item-number">1</span>
+					<span class="steps__item-label">Корзина</span>
+				</span>
+			</li>
+			<li class="steps__item">
+				<span class="steps__item-link">
+					<span class="steps__item-number">2</span>
+					<span class="steps__item-label">Оплата</span>
+				</span>
+			</li>
+			<li class="steps__item">
+				<span class="steps__item-link">
+					<span class="steps__item-number">3</span>
+					<span class="steps__item-label">Доставка</span>
+				</span>
+			</li>
+			<li class="steps__item">
+				<span class="steps__item-link">
+					<span class="steps__item-number">4</span>
+					<span class="steps__item-label">Завершено</span>
+				</span>
+			</li>
+		</ul>
+	</nav>
+	
+	<div class="block-content container">
+		<table class="table-product">
+			<tbody>
+				<tr class="table-product__row-title">
+					<td class="table-product__cell"></td>
+					<td class="table-product__cell">Стоимоть</td>
+					<td class="table-product__cell">Итого</td>
+					<td class="table-product__cell"></td>
+				</tr>
+
+				<tr class="table-product__row-info">
+					<td class="table-product__cell table-product__cell_name">Расчет штрафов</td>
+					<td class="table-product__cell dollar table-product__cell_value">139,99</td>
+					<td class="table-product__cell dollar table-product__cell_total">139,99</td>
+					<td class="table-product__cell">
+						<button class="table-product__del"></button>
+					</td>
+				</tr>
+
+				<tr class="table-product__row-info">
+					<td class="table-product__cell table-product__cell_name">Оформление договора</td>
+					<td class="table-product__cell dollar table-product__cell_value">399</td>
+					<td class="table-product__cell dollar table-product__cell_total">399</td>
+					<td class="table-product__cell">
+						<button type="button" class="table-product__del"></button>
+					</td>
+				</tr>
+			</tbody>
+		</table>		
+	</div>
+
+	<div class="block-end block-end__step-1 container">
+		<div class="table-total">
+			<span class="table-total__label">Итого</span>
+			<span class="table-total__sum dollar">549 </span>
+			<span class="table-total__sum-cent">99</span>				
+		</div>
+	
+		<a href="index-step2.html" class="btn-next">Далее</a>		
+	</div>
+
+</body>
+</html>

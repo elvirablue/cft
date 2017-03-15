@@ -1,0 +1,78 @@
+<!Doctype html>
+<html>
+<head> 
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<title>Покупка</title>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/style.css">
+	
+</head>
+
+<body>
+	<nav class="steps-wrapper container">
+		
+		<ul class="steps">
+			<li class="steps__item overpast">
+				<span class="steps__item-link">
+					<span class="steps__item-number">&#10004;</span>
+					<span class="steps__item-label">Корзина</span>
+				</span>
+			</li>
+			<li class="steps__item active">
+				<span class="steps__item-link">
+					<span class="steps__item-number">2</span>
+					<span class="steps__item-label">Оплата</span>
+				</span>
+			</li>
+			<li class="steps__item">
+				<span class="steps__item-link">
+					<span class="steps__item-number">3</span>
+					<span class="steps__item-label">Доставка</span>
+				</span>
+			</li>
+			<li class="steps__item">
+				<span class="steps__item-link">
+					<span class="steps__item-number">4</span>
+					<span class="steps__item-label">Завершено</span>
+				</span>
+			</li>
+		</ul>
+	</nav>
+	
+	<div class="block-content container">
+		<div class="payment-method">
+			<button class="payment-method__btn payment-method__btn_card active">карта</button>
+			<button class="payment-method__btn payment-method__btn_paypal">paypal</button>
+		</div>
+
+		<form class="form-card" action="">			
+			<div class="form-card__info-basic">
+				<input type="text" class="input form-card__input-number-card" name="user-number-card" id="user-number-card" placeholder="Номер карты">
+				<input type="text" class="input form-card__input-data-card" name="user-month-card" id="user-month-card" placeholder="Месяц">
+				<input type="text" class="input form-card__input-data-card" name="user-year-card" id="user-year-card" placeholder="Год">
+				<input type="text" class="input form-card__input-holder-card" name="user-holder-card" id="user-holder-card" placeholder="Имя Владельца">
+				<input type="submit" class="input-hidden" value="Send" name="send-card-info" id="send-card-info">
+			</div>
+			
+			<div class="form-card__info-cvv">
+				<div class="form-card__gray-line"></div>
+				<div class="form-card__block-cvv">
+					<input type="number" class="input form-card__input-cvv-card" name="user-cvv-card" id="user-cvv-card" placeholder="CVV">
+					<p class="form-card__text">Код на обратной стороне</p>
+				</div>
+			</div>
+		</form>				
+	</div>
+
+	<div class="block-end block-end__step-2 container">
+		<a href="index-step1.html" class="btn-back btn-back_step-2">Вернуться назад</a>	
+	
+		<a href="index-step3.html" class="btn-next btn-next_step-2">Оплатить</a>		
+	</div>
+
+</body>
+</html>

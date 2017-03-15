@@ -1,0 +1,150 @@
+
+
+<!Doctype html>
+<html>
+<head> 
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<title>Магазин</title>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/style-main.css">
+	
+</head>
+
+
+<body class="bg-gray">	
+	<div class="block-white">
+		<div class="wrapper-x ">
+			<header class="page-header">
+				<a href="#" class="logo"></a>
+				<nav class="main-nav">
+					<ul class="main-nav__list">
+						<li class="main-nav__item active"><a class="main-nav__link">ГЛАВНАЯ</a></li>
+						<li class="main-nav__item"><a href="catalog-category.html" class="main-nav__link">Каталог приложений</a></li>
+						<li class="main-nav__item"><a href="#" class="main-nav__link">О компании</a></li>
+					</ul>
+				</nav>
+			</header>
+		</div>	
+	</div>
+	
+	<div class="wrapper-x">
+		<section class="page-main">
+			<div class="page-main__header">
+				<h2 class="page-main__title">Пакет приложений</h2>
+				<form class="form-search">
+					<input class="form-search__input" type="text" name="search" id="search" value="" placeholder="Поиск приложения">					
+   					<input class="form-search__btn" type="submit" value="">
+				</form>
+			</div>
+			
+			<nav class="product-nav">
+				<div class="arrow prev"></div>
+				<div class="wrapper-visible">
+					<ul class="product-nav__list"></ul>
+				</div>
+				<div class="arrow next"></div>
+				<div class="slider_controls">
+				    <label></label>
+				    <label></label>
+				    <label></label>
+				    <label></label>
+				    <label></label>
+				    <label></label>
+				    <label></label>
+				 </div>
+			</nav>
+			
+			<div class="application-wrapper">
+				<div class="application">
+					<div class="application__header">
+						<a href="#" class="application__header-title">МНОГОПОТОКОВЫЕ ПРИЛОЖЕНИЯ</a>
+						<a href="#" class="application__header-more"></a>
+					</div>
+					<ul class="application__list">
+						<li class="application__item application__item_ico-work">
+							<a href="#" class="application__name">Финансовый мониторинг
+								<span class="application__count">приложений: 
+									<span class="application__count-num">5</span>
+								</span>
+							</a>
+						</li>
+						<li class="application__item application__item_ico-work">
+							<a href="#" class="application__name">Бухгалтерский учет
+								<span class="application__count">приложений: 
+									<span class="application__count-num">2</span>
+								</span>
+							</a>
+						</li>
+						<li class="application__item application__item_ico-work">
+							<a href="#" class="application__name">Кредитование
+								<span class="application__count">приложений: 
+									<span class="application__count-num">12</span>
+								</span>
+							</a>
+						</li>
+						<li class="application__item application__item_ico-work">
+							<a href="#" class="application__name">Пластиковые карты
+								<span class="application__count">приложений: 
+									<span class="application__count-num">29</span>
+								</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+				
+				<div class="application">
+					<div class="application__header">
+						<a href="#" class="application__header-title">ОДНОПОТОЧНЫЕ ПРИЛОЖЕНИЯ</a>
+						<a href="#" class="application__header-more"></a>
+					</div>
+					<ul class="application__list">
+						<li class="application__item application__item_ico-edu">
+							<a href="#" class="application__name">Расчетный центр
+								<span class="application__count">приложений: 
+									<span class="application__count-num">69</span>
+								</span>
+							</a>
+						</li>
+						<li class="application__item application__item_ico-edu">
+							<a href="#" class="application__name">Банковские гарантии
+								<span class="application__count">приложений: 
+									<span class="application__count-num">44</span>
+								</span>
+							</a>
+						</li>
+						<li class="application__item application__item_ico-edu">
+							<a href="#" class="application__name">Казначейство
+								<span class="application__count">приложений: 
+									<span class="application__count-num">0</span>
+								</span>
+							</a>
+						</li>
+					</ul>
+				</div>			
+			</div>	
+				
+		</section>
+	</div>	
+	
+	
+</div>	
+
+<template id="new_template">
+	<li class="product-nav__item">
+		<a href="#" class="product-nav__link">
+			<img class="product-nav__img" src="img/prod-1.png">
+			<span class="product-nav__title-name">СТАНДАРТНЫЙ ПАКЕТ</span>
+			<span class="product-nav__title-time">08 апреля 2012</span>
+		</a>
+	</li>
+</template>	
+
+<script src="js/js-function.js"></script>
+<!--<script src="js/js-main.js"></script>--> // смена продуктов по таймеру
+<script src="js/js-slider.js"></script>		 // слайдер продуктов
+</body>
+</html>
