@@ -774,8 +774,8 @@ a {
   line-height: 2;
   color: #79878e;
 }
-.catalog-nav__item:hover .catalog-nav__link,
-.catalog-nav__item.active .catalog-nav__link {
+.catalog-nav__link:hover,
+.catalog-nav__link.active {
   color: #f13843;
   text-decoration: underline;
 }

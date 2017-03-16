@@ -40,7 +40,7 @@
 			</ul>
 		</aside>
 
-		<section class="page-main page-main--product" id="">
+		<section class="page-main page-main--product">
 			
 		</section>
 		
@@ -48,11 +48,12 @@
 	
 	<template id="catalog_template">
 		<li class="catalog-nav__item">
-			<a class="catalog-nav__link" href="#">Стандартный пакет</a>
+			<a class="catalog-nav__link" data-idApp="" href="#">Стандартный пакет</a>
 		</li>
 	</template>
 
 	<template id="card_app_template">
+		<div>
 			<div class="page-main__header ">
 				<h2 class="page-main__title">НОВЫЙ ЦФТ-БАНК</h2>				
 			</div>
@@ -60,20 +61,11 @@
 			<div class="product-basic-info">
 				<div class="product-basic-info__text">
 					<p class="product-basic-info__date">09 сентября 2016</p>
-					<p class="product-basic-info__feature-name">
-						Приложение лицензировано в 25 банках
-					</p>
-					<p class="product-basic-info__feature-name">
-						Тип Приложения: Базовое
-					</p>
-					<p class="product-basic-info__feature-name">
-						Разработчик: ЦФТ
-					</p>
-					<p class="product-basic-info__feature-name">
-						Код по каталогу: 1B365001
-					</p>
+					<div>
+						
+					</div>
 					<p class="product-basic-info__requirements">
-						<span class="product-basic-info__requirements-title">Требования:</span> совместимо с v.14.1, ТЯ v.7.4.0.0 и выше, при наличии лицензии на Проигрыватель форм в web
+						Требования: <span> совместимо с v.14.1, ТЯ v.7.4.0.0 и выше, при наличии лицензии на Проигрыватель форм в web</span>
 					</p>				
 				</div>
 
@@ -92,12 +84,10 @@
 
 			<div class="product-add-info">
 				<ul class="product-add-info__list">
-					<li>
-						Выполнение операций по банковским продуктам, используемым клиентом, и оформление новых продуктов банка непосредственно из Единого окна
-					</li>
 					
 				</ul>				
 			</div>
+		</div>
 		</template>
 
 	<script src="js/js-function.js"></script>

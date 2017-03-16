@@ -1,7 +1,16 @@
+var guidMap = {
+
+  "059e25bf-f60c-49a5-b6f4-58b61b4687bb" : "img/prod-1.png",
+  "c2e57c5b-47a9-4602-96f1-85fd953f6873" : "img/prod-2.png",
+  "32145f9f-bbb8-44b4-a81e-baf5c4a5407f" : "img/prod-3.png",
+  "83fcbc5f-7639-4736-bae0-966c0134b894" : "img/prod-1.png"
+  
+}
+var navData = false;
 function getApp(pageName) {
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET', 'api/api_packages.json', true);
-	xhr.onload = function(evt) {
+	xhr.onload = function(evt) {		
 		var jsonStr = this.responseText;
   		var loadedApp = JSON.parse(jsonStr);
   		Application = loadedApp.slice();
@@ -13,16 +22,19 @@ function getApp(pageName) {
 				};
   				renderApp(sliderApp);
   				break;
-  			case "category" :
-  				renderApp(Application);
+  			case "category" :  			
+  				renderAppNav(Application); 				
+  							
   				break;
   		}
 		
   	};
 	xhr.send();
+	navData = true;
+
 }
 
-function getInfoApp() {
+function getInfoApp(idApp) {
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET', 'api/api_info.json', true);
 	xhr.onload = function(evt) {
@@ -30,8 +42,8 @@ function getInfoApp() {
   		var loadedApp = JSON.parse(jsonStr);
   		CardApplication = loadedApp.slice();
   		var len = loadedApp.length;
-
-  		renderCardApp(CardApplication[0]); 		
+  		idApp--;
+  		renderCardApp(CardApplication[idApp]); 		
 		
   	};
 	xhr.send();
@@ -59,12 +71,29 @@ function randomElement(N, Arr) {
 	return new_array;
 }
 
-
 function renderApp(App) {
 	App.forEach(function(app1) {
 		var element = getElementFromTemplate(app1);
-		container.appendChild(element);
+		container.appendChild(element);		
 	});
+	
+}
+
+function renderAppNav(App) {
+	App.forEach(function(app1, index) {
+		var element = getElementFromTemplate(app1);
+		container.appendChild(element);
+		container.children[index].children[0].addEventListener('click', function(event) {
+				event.preventDefault();
+				if (this.classList.contains('active')) return;
+				document.querySelector('.catalog-nav__link.active').classList.remove('active');
+				this.classList.add('active');
+				var idApp = this.getAttribute('data-idApp');
+				removeChildren(container_info);
+				getInfoApp(idApp);
+		});
+	});
+	container.children[0].children[0].classList.add('active');
 }
 
 function renderCardApp(App) {
