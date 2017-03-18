@@ -6,7 +6,58 @@ var guidMap = {
   "83fcbc5f-7639-4736-bae0-966c0134b894" : "img/prod-1.png"
   
 }
-var navData = false;
+
+//*************************************
+//*************************************
+oop = {
+	inherit: function(cls, superClass) {
+		cls.prototype = Object.create(superClass.prototype);
+		cls.prototype.constructor = cls;
+		cls.SuperClass = superClass;
+	},
+	cls: function(parent, fn) {
+		var c = function() { this.__init__ && this.__init__.apply(this, arguments); },
+				key;
+				parent && this.inherit(c, parent);
+				fn.call(c.prototype);
+				return c;
+    },
+	super: function(cls) {
+		if (cls.SuperClass) return cls.SuperClass.prototype;
+		if (cls.mixin) return cls;
+		return cls.prototype;
+	}
+};
+
+
+var AppApp = new (oop.cls(null, function() {
+	this.get = function(pageName) { 
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', 'api/api_packages.json', true);
+		xhr.onload = function(evt) {		
+			var jsonStr = this.responseText;
+		 		var loadedApp = JSON.parse(jsonStr);
+		 		Application = loadedApp.slice();
+		 		var len = loadedApp.length;
+		 		switch (pageName) {
+		 			case "index" :
+		 				if (len > 7) {			
+						var sliderApp = Application.concat(loadedApp.slice(0, 6));
+					};
+		 				renderApp(sliderApp);
+		 				break;
+		 			case "category" :  			
+		 				renderAppNav(Application);  							
+		 				break;
+		 		}		
+		 	};
+		xhr.send();
+	}
+}))();
+//var appobj = new AppApp();
+//*************************************
+//*************************************
+
 function getApp(pageName) {
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET', 'api/api_packages.json', true);
@@ -23,15 +74,11 @@ function getApp(pageName) {
   				renderApp(sliderApp);
   				break;
   			case "category" :  			
-  				renderAppNav(Application); 				
-  							
+  				renderAppNav(Application);  							
   				break;
-  		}
-		
+  		}		
   	};
 	xhr.send();
-	navData = true;
-
 }
 
 function getInfoApp(idApp) {
@@ -99,6 +146,13 @@ function renderAppNav(App) {
 function renderCardApp(App) {
 	var element = getCardAppFromTemplate(App);
 	container_info.appendChild(element);
+	
+	container_info.querySelector('#btn-basked').addEventListener('click', function(event) {
+		event.preventDefault();
+		var index_selectApp = container_info.querySelector('.page-main__title').getAttribute('data-idApp');
+		backedApp = Application[index_selectApp];
+		console.log(backedApp);
+	});
 }
 
 function removeChildren(node) {

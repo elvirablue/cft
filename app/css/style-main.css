@@ -946,3 +946,22 @@ a {
   .slider_controls label.active {
     background-color: #ed1b2f;
   }
+  .backet {
+    padding-left: 5rem;
+    background: url("../img/cart.svg") 2rem 50% no-repeat;
+    background-size: 2rem 2rem;
+  }
+
+  .main-nav__link.backet:hover {
+    color: #adafb2;
+  }
+
+  .price-app {
+    text-align: center;
+    font-size: 2rem;
+  }
+
+  .price-app:after {
+    content: " $";
+    font-size: 2rem;
+  }

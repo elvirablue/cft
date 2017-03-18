@@ -944,3 +944,9 @@ a {
   .slider_controls label.active {
     background-color: #ed1b2f;
   }
+
+  .backet {
+    padding-left: 3rem;
+    background: url("../img/cart.svg") 0 0 no-repeat;
+    background-size: 1rem 1rem;
+  }
