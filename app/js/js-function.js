@@ -7,6 +7,7 @@ var guidMap = {
   
 }
 
+
 //*************************************
 //*************************************
 oop = {
@@ -28,6 +29,11 @@ oop = {
 		return cls.prototype;
 	}
 };
+
+//*******************************
+//*******************************
+
+
 
 
 var AppApp = new (oop.cls(null, function() {
@@ -94,6 +100,16 @@ function getInfoApp(idApp) {
 		
   	};
 	xhr.send();
+
+}
+
+function count(obj) {
+   var count = 0;
+   for(var prs in obj)
+   {
+        if(obj.hasOwnProperty(prs)) count++;
+   }
+   return count;
 }
 
 
@@ -147,12 +163,14 @@ function renderCardApp(App) {
 	var element = getCardAppFromTemplate(App);
 	container_info.appendChild(element);
 	
-	container_info.querySelector('#btn-basked').addEventListener('click', function(event) {
-		event.preventDefault();
-		var index_selectApp = container_info.querySelector('.page-main__title').getAttribute('data-idApp');
-		backedApp = Application[index_selectApp];
-		console.log(backedApp);
-	});
+	//container_info.querySelector('#btn-basked').addEventListener('click', function(event) {
+	//	event.preventDefault();		
+	////открыть модальное окно с корзиной
+	//alert(this.innerText);
+	//	var index_selectApp = container_info.querySelector('.page-main__title').getAttribute('data-idApp');
+	//	backedApp = Application[index_selectApp];
+	//	console.log(backedApp);
+	//});
 }
 
 function removeChildren(node) {

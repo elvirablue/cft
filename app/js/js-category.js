@@ -9,21 +9,8 @@ getInfoApp(1);
 
 var Application = [];
 var backedApp = [];
-var backed_node = document.querySelector('#backed');
+var basket_json = [];
 
-backed_node.addEventListener('click', function(event) {
-	event.preventDefault();
-	//открыть модальное окно с корзиной
-	alert(this.innerText);
-});
-
-//var basked_btn = document.querySelector('#btn-basked');
-//
-//basked_btn.addEventListener('click', function(event) {
-//	event.preventDefault();
-//	var index_selectApp = document.querySelector('.page-main__title').getAttribute('data-idApp');
-//	backedApp = Application[index_selectApp];
-//});
 
 function getElementFromTemplate(data) {
 	var template = document.querySelector('#catalog_template');
@@ -55,7 +42,7 @@ function createNode(array, node, parent_node, class_node) {
 	}
 }
 
-var basked_btn;
+
 
 function getCardAppFromTemplate(data) {
 	var template = document.querySelector('#card_app_template');
@@ -76,14 +63,26 @@ function getCardAppFromTemplate(data) {
 	var features_node_parent = element.querySelector('.product-add-info__list');
 	var features_json = data.features;
 	createNode(features_json, 'li', features_node_parent);
-
-	//basked_btn = document.querySelector('#btn-basked');
+	var basked_btn = element.querySelector('#btn-basket');
 //
-	//basked_btn.addEventListener('click', function(event) {
-	//	event.preventDefault();
-	//	var index_selectApp = document.querySelector('.page-main__title').getAttribute('data-idApp');
-	//	backedApp = Application[index_selectApp];
-	//});
+	basked_btn.addEventListener('click', function(event) {
+		event.preventDefault();
+		var index_selectApp = document.querySelector('.page-main__title').getAttribute('data-idApp');
+		backedApp = {
+			"title" : data.title,
+			"price" : data.price,
+			"sum" : index_selectApp
+		}
+		var x = JSON.stringify(backedApp);
+		basket_json.push(x);
+		//если товар есть, то увеличить кол-во этих объектов
+		//записать количество товаров в LocalStorage
+		ls_basked = localStorage.getItem("app-basked");
+		ls_basked++;
+		localStorage.getItem("app-basked", ls_basked);
+		var sum = basket_json.length;
+		document.querySelector('#backed').innerText = ls_basked;
+	});
 			
 	return element;
 }
