@@ -1,13 +1,10 @@
-document.onload = function() {
-	App.init();
-} 
 
 
-getApp("category");
-getInfoApp(1);
+clsApp.init();
 
 
-var Application = [];
+
+
 var basketApp = [];
 var basket_json = [];
 localStorage.setItem('app-basket', '0');

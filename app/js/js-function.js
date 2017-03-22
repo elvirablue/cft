@@ -27,17 +27,19 @@ function getBasket(array_ls_basket) {
 function renderBasket(arr) {
 	var template = document.querySelector('#basket_step1_template');
 	var element = template.content.children[0].cloneNode(true);
-
-	arr.forEach(function(app, index) {
+	
+	var total_sum = 0;
+	arr.forEach(function(app, index) {		
 		var temp_basket =  document.querySelector('#basket_item_template');
 		var elem_basket = temp_basket.content.children[0].cloneNode(true);
 		elem_basket.querySelector('.table-product__cell_name').innerText = app.title;
 		elem_basket.querySelector('.table-product__cell_value').innerText = app.price;
-		elem_basket.querySelector('.table-product__cell_total').innerText = +app.price * +app.sum;
-
-		element.appendChild(elem_basket);
+		elem_basket.querySelector('.table-product__cell_total').innerText = +app.price * +app.sum;	
+		total_sum+=	+app.price * +app.sum;
+		element.querySelector('#container_basket_item').appendChild(elem_basket);
 	});
-
+	
+	element.querySelector('.table-total__sum').innerText = total_sum;
 	return element;
 
 }
@@ -62,6 +64,7 @@ oop = {
 		if (cls.mixin) return cls;
 		return cls.prototype;
 	}
+	
 };
 
 //*******************************
@@ -70,31 +73,55 @@ oop = {
 
 
 
-var AppApp = new (oop.cls(null, function() {
-	this.get = function(pageName) { 
-		var xhr = new XMLHttpRequest();
-		xhr.open('GET', 'api/api_packages.json', true);
-		xhr.onload = function(evt) {		
-			var jsonStr = this.responseText;
-		 		var loadedApp = JSON.parse(jsonStr);
-		 		Application = loadedApp.slice();
-		 		var len = loadedApp.length;
-		 		switch (pageName) {
-		 			case "index" :
-		 				if (len > 7) {			
-						var sliderApp = Application.concat(loadedApp.slice(0, 6));
-					};
-		 				renderApp(sliderApp);
-		 				break;
-		 			case "category" :  			
-		 				renderAppNav(Application);  							
-		 				break;
-		 		}		
-		 	};
-		xhr.send();
+var clsApp = new (oop.cls(null, function() {
+	var XX;
+	this.init = function() {
+		this.get();		
+		
+	}	
+
+	this.get = function() { 
+		loadData('api/api_packages.json')
+		.then(
+			function(result) { 
+				console.log(result); 
+				XX = result; 
+				getInfoApp(1);
+				renderAppNav(XX);
+			},
+			function(error) { console.warn(error); }
+		);
+	}	
+
+	this.removeChildren = function(node) {
+    	var children = node.childNodes;
+    	while(children.length) {
+    	    node.removeChild(children[0]);
+    	}
 	}
+
+	this.randomElement = function(N) {
+		var len = XX.length;
+		var new_array = [];
+		var j = 0;
+		for (i = 0; i < N; i++) {
+			j = Math.floor(Math.random() * len);
+			new_array = new_array.concat(XX.slice(j, j + 1));
+			len--;
+		};
+		return new_array;
+	}
+	
 }))();
-//var appobj = new AppApp();
+
+//var clsCardApp = new (oop.cls(clsApp, function() {
+//	this.renderCardApp = function(App) {
+//		var element = getCardAppFromTemplate(App);
+//		container_info.appendChild(element);	
+//	}
+
+//}))();
+
 //*************************************
 //*************************************
 
@@ -108,9 +135,9 @@ function loadData(url){
 		xhr.onload = function(evt) {		
 			var jsonStr = this.responseText;
 	  		var loadedApp;
-	  		if (xhr.status != 200) return reject('error - ошибка передачи данных');
-	  		if (!loadedApp) return reject('error - пустые данные');
+	  		if (xhr.status != 200) return reject('error - ошибка передачи данных');	  		
 	  		loadedApp = JSON.parse(jsonStr);
+	  		if (!loadedApp) return reject('error - пустые данные');
 	  		resolve(loadedApp);
 	  	};
 	
@@ -120,10 +147,11 @@ function loadData(url){
 		xhr.send();
 	});
 }
-loadData('api/api_ckages.json').then(
-	function(result) { console.log(result); },
-	function(error) { console.warn(error); }
-);
+
+//loadData('api/api_packages.json').then(
+//	function(result) { console.log(result); },
+//	function(error) { console.warn(error); }
+//);
 
 
 //---------------------------------
