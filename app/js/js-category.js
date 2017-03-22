@@ -8,9 +8,10 @@ getInfoApp(1);
 
 
 var Application = [];
-var backedApp = [];
+var basketApp = [];
 var basket_json = [];
-
+localStorage.setItem('app-basket', '0');
+localStorage.setItem('all-basket', []);
 
 function getElementFromTemplate(data) {
 	var template = document.querySelector('#catalog_template');
@@ -63,30 +64,53 @@ function getCardAppFromTemplate(data) {
 	var features_node_parent = element.querySelector('.product-add-info__list');
 	var features_json = data.features;
 	createNode(features_json, 'li', features_node_parent);
-	var basked_btn = element.querySelector('#btn-basket');
-//
-	basked_btn.addEventListener('click', function(event) {
+	var basket_btn = element.querySelector('#btn-basket');
+	
+	basket_btn.addEventListener('click', function(event) {
 		event.preventDefault();
 		var index_selectApp = document.querySelector('.page-main__title').getAttribute('data-idApp');
-		backedApp = {
+		basketApp = {
 			"title" : data.title,
 			"price" : data.price,
-			"sum" : index_selectApp
+			"sum" : "1"
 		}
-		var x = JSON.stringify(backedApp);
+		var x = JSON.stringify(basketApp);
 		basket_json.push(x);
 		//если товар есть, то увеличить кол-во этих объектов
+		addBasket(basketApp);
 		//записать количество товаров в LocalStorage
-		ls_basked = localStorage.getItem("app-basked");
-		ls_basked++;
-		localStorage.getItem("app-basked", ls_basked);
+		ls_basket = localStorage.getItem('app-basket');
+		if (!ls_basket) {ls_basket = 0;}
+		else {+ls_basket++;}
+		localStorage.setItem('app-basket', ls_basket);
 		var sum = basket_json.length;
-		document.querySelector('#backed').innerText = ls_basked;
+		document.querySelector('#backed').innerText = ls_basket;
 	});
 			
 	return element;
 }
 
+function addBasket(obj) {
+	var ls_basket = localStorage.getItem('all-basket');	
+	var all_basket = new Array(); 
+	if(ls_basket != []) {		
+		
+		all_basket = JSON.parse(ls_basket);
+		var flag = false;
+		all_basket.forEach(function(app, index) {
+			if(app.title === obj.title) {
+				+app.sum++;
+				all_basket[index].sum = app.sum;
+				flag = true;
+			}
+		});
+		if (!flag) {
+			all_basket.push(obj);
+		}
 
+	} else {all_basket.push(obj);}
+	
+	localStorage.setItem('all-basket', JSON.stringify(all_basket));
+}
  
 

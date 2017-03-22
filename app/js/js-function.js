@@ -7,6 +7,41 @@ var guidMap = {
   
 }
 
+var basket_link = document.querySelector("#backed");
+var container_panel = document.querySelector("#right-panel");
+
+basket_link.addEventListener('click', function(event) {
+	//удалить все из правой панели
+	var container_panel = document.querySelector("#right-panel");
+	removeChildren(container_panel);
+	//вывести в правую панель корзину
+	var ls_basket = localStorage.getItem('all-basket');	
+	var load_ls_basket = JSON.parse(ls_basket);
+	getBasket(load_ls_basket);
+});
+
+function getBasket(array_ls_basket) {
+	var element = renderBasket(array_ls_basket);
+	container_panel.appendChild(element);
+}
+
+function renderBasket(arr) {
+	var template = document.querySelector('#basket_step1_template');
+	var element = template.content.children[0].cloneNode(true);
+
+	arr.forEach(function(app, index) {
+		var temp_basket =  document.querySelector('#basket_item_template');
+		var elem_basket = temp_basket.content.children[0].cloneNode(true);
+		elem_basket.querySelector('.table-product__cell_name').innerText = app.title;
+		elem_basket.querySelector('.table-product__cell_value').innerText = app.price;
+		elem_basket.querySelector('.table-product__cell_total').innerText = +app.price * +app.sum;
+
+		element.appendChild(elem_basket);
+	});
+
+	return element;
+
+}
 
 //*************************************
 //*************************************
@@ -163,14 +198,6 @@ function renderCardApp(App) {
 	var element = getCardAppFromTemplate(App);
 	container_info.appendChild(element);
 	
-	//container_info.querySelector('#btn-basked').addEventListener('click', function(event) {
-	//	event.preventDefault();		
-	////открыть модальное окно с корзиной
-	//alert(this.innerText);
-	//	var index_selectApp = container_info.querySelector('.page-main__title').getAttribute('data-idApp');
-	//	backedApp = Application[index_selectApp];
-	//	console.log(backedApp);
-	//});
 }
 
 function removeChildren(node) {
